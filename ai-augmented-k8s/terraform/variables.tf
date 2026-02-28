@@ -13,7 +13,7 @@ variable "key_name" {
 variable "my_ip_cidr" {
   type    = string
   default = "0.0.0.0/0"
-  description = "CIDR allowed for SSH (set to your IP in production)"
+  description = "(deprecated) kept for backward compatibility; SSH now auto-detects your public IP"
 }
 
 variable "control_instance_type" {

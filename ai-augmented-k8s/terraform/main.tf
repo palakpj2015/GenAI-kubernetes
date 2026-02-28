@@ -11,6 +11,11 @@ provider "aws" {
   region = var.region
 }
 
+# Auto-detect caller public IP for SSH access
+data "http" "myip" {
+  url = "https://ifconfig.me"
+}
+
 data "aws_ami" "ubuntu" {
   most_recent = true
   owners      = ["099720109477"] # Canonical
@@ -28,7 +33,7 @@ resource "aws_security_group" "k8s_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = [var.my_ip_cidr]
+    cidr_blocks = ["${trimspace(data.http.myip.body)}/32"]
   }
 
   ingress {
