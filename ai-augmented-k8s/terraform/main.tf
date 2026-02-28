@@ -89,3 +89,10 @@ resource "aws_instance" "worker" {
     Name = "k8s-worker"
   }
 }
+
+# Upload the public key to AWS as an EC2 key pair so instances can be accessed
+resource "aws_key_pair" "deployer" {
+  key_name   = var.key_name
+  public_key = file("/Users/apple/.ssh/id_ed25519_genai_k8s.pub")
+}
+

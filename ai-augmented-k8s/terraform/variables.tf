@@ -6,7 +6,9 @@ variable "region" {
 variable "key_name" {
   type        = string
   description = "Existing AWS key pair name to use for SSH access"
+  default     = "genai_k8s"
 }
+
 
 variable "my_ip_cidr" {
   type    = string
