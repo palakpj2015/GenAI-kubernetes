@@ -23,3 +23,9 @@ variable "worker_instance_type" {
   type    = string
   default = "t2.micro"
 }
+
+variable "root_volume_size" {
+  type    = number
+  default = 8
+  description = "Root EBS volume size in GB for instances (smaller for cost savings)"
+}

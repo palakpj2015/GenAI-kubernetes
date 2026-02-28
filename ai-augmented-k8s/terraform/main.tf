@@ -65,7 +65,7 @@ resource "aws_instance" "control" {
   instance_type          = var.control_instance_type
   key_name               = var.key_name
   root_block_device {
-    volume_size = 20
+    volume_size = var.root_volume_size
     volume_type = "gp2"
   }
   vpc_security_group_ids = [aws_security_group.k8s_sg.id]
@@ -80,7 +80,7 @@ resource "aws_instance" "worker" {
   instance_type          = var.worker_instance_type
   key_name               = var.key_name
   root_block_device {
-    volume_size = 20
+    volume_size = var.root_volume_size
     volume_type = "gp2"
   }
   vpc_security_group_ids = [aws_security_group.k8s_sg.id]
